@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pro Athlete</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<header class="main-header">
+  <nav class="nav-container">
+    <!-- Logo -->
+    <a href="homepage.html" class="logo-link">
+      <img src="logos/White on DarkBlue.png" alt="Logo" class="logo">
+    </a>
+
+    <!-- Navigation Links -->
+    <ul class="nav-list">
+      <li class="nav-item dropdown">
+        <a href="#" class="dropdown-button">Sports ▾</a>
+        <div class="dropdown-menu">
+          <a href="Basketball.html">Basketball</a>
+          <a href="Soccer.html">Soccer</a>
+        </div>
+      </li>
+      <li class="nav-item"><a href="Features.html">Features</a></li>
+      <li class="nav-item"><a href="Pricing.html">Pricing</a></li>
+      <li class="nav-item"><a href="About.html">About</a></li>
+      <li class="nav-item"><a href="francais-home.html">Français</a></li>
+    </ul>
+
+    <!-- Social Icons -->
+    <div class="social-icons">
+      <a href="https://www.facebook.com/proathletebasketball/" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
+      <a href="https://www.instagram.com/proathletebasketball/" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+      <a href="https://www.youtube.com/@proathlete5342" target="_blank"><i class="fab fa-youtube fa-2x"></i></a>
+    </div>
+  </nav>
+</header>
+
+<body>
+
+<section class="video-carousel">
+  <button class="arrow left">&#10094;</button>
+  
+  <div class="carousel-track">
+    <div class="slide"><video src="videos/Vidéo site web.mp4" autoplay muted loop></video></div>
+    <div class="slide"><video src="videos/warmup 1.mp4" autoplay muted loop></video></div>
+    <div class="slide"><video src="videos/warmup 2.mp4" autoplay muted loop></video></div>
+  </div>
+  
+  <button class="arrow right">&#10095;</button>
+</section>
+
+<script>
+  const track = document.querySelector('.carousel-track');
+  const slides = document.querySelectorAll('.slide');
+  const leftBtn = document.querySelector('.arrow.left');
+  const rightBtn = document.querySelector('.arrow.right');
+
+  let currentIndex = 0;
+
+  function updateCarousel() {
+    const slideWidth = slides[0].clientWidth;
+    track.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
+  }
+
+  leftBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    updateCarousel();
+  });
+
+  rightBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateCarousel();
+  });
+
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateCarousel();
+  }, 15000);
+</script>
+
+<section class="soccer-text-wrapper">
+  <div class="soccer-text">
+    <h2>Soccer-Specific Injury Prevention Training Program</h2>
+    <p>
+      PRO ATHLETE's soccer-specific training program is built to prepare you for the unique challenges of the sport. 
+      Designed by sports medicine and soccer performance experts, it incorporates neuromuscular exercises, which play 
+      a key role in injury prevention by helping reduce the risk of common soccer-related injuries like ankle sprains,
+      muscle strains, ACL injuries, and more. Stay healthy and play your best with PRO ATHLETE.
+    </p>
+
+    <h3>Program Benefits:</h3>
+    <ul class="benefits">
+      <li> Prevent non-contact injuries</li>
+      <li> Reduce risk of soccer-specific injuries: ankle sprains, knee injuries, ACL, meniscus tears, groin and hamstring strains, and more.</li>
+      <li> Joint stability and strength</li>
+      <li> Improve balance, strength, and mobility</li>
+      <li> Supports recovery with mobility exercises and programs</li>
+      <li> Improve power and performance with sport- and age-specific strength training</li>
+    </ul>
+
+    <h3>Who It's For:</h3>
+    <ul class="who-for">
+      <li> Youth & high school athletes</li>
+      <li> Collegiate athletes</li>
+      <li> Competitive and recreational players</li>
+      <li> Coaches focused on player safety and longevity</li>
+    </ul>
+
+    <h2 class="cta">🗣 Train for the Game. Stay in the Game.</h2>
+  </div>
+</section>
+
+  <footer class="main-footer">
+    <div class="foooter-left">
+      <a href="homepage.html"><img src="logos/White on DarkBlue.png" alt="Logo" class="logo"></a>
+      <p>&copy; PRO ATHLETE 2025. All rights reserved.</p>
+    </div>
+    <div class="footer-right">
+      <a href="ContactUs.html"> Contact Us</a>
+      <a href="termsandcond.html"> Privacy Policy and Terms and Conditions</a>
+    </div>
+  </footer>
+
+  <!--Scripts-->
+  <script>
+  async function loadSoccerContent() {
+  const response = await fetch("content/soccer.md");
+  const text = await response.text();
+
+  // Parse frontmatter (simple split)
+  const match = /---\n([\s\S]*?)---\n([\s\S]*)/.exec(text);
+  const yaml = jsyaml.load(match[1]);
+  const body = match[2];
+
+  // Insert into page
+  document.querySelector(".soccer-text h2").textContent = yaml.title;
+  document.querySelector(".soccer-text p").textContent = body.trim();
+
+  // Benefits
+  const benefitsList = document.querySelector(".benefits");
+  benefitsList.innerHTML = "";
+  yaml.program_benefits.forEach(item => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    benefitsList.appendChild(li);
+  });
+
+  // Who It's For
+  const whoList = document.querySelector(".who-for");
+  whoList.innerHTML = "";
+  yaml.who_for.forEach(item => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    whoList.appendChild(li);
+  });
+
+  // Call to Action
+  document.querySelector(".cta").textContent = yaml.cta;
+}
+
+loadSoccerContent();
+</script>
+  <script src="script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <script src="cms-content.js"></script>
+</body>
+</html>

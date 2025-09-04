@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pro Athlete</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<header class="main-header">
+  <nav class="nav-container">
+    <!-- Logo -->
+    <a href="francais-home.html" class="logo-link">
+      <img src="logos/White on DarkBlue.png" alt="Logo" class="logo">
+    </a>
+
+    <!-- Navigation Links -->
+    <ul class="nav-list">
+      <li class="nav-item dropdown">
+        <a href="#" class="dropdown-button">Sports ▾</a>
+        <div class="dropdown-menu">
+          <a href="francais-basketball.html">Basketball</a>
+          <a href="francais-soccer.html">Soccer</a>
+        </div>
+      </li>
+      <li class="nav-item"><a href="francais-features.html">Caractéristiques</a></li>
+      <li class="nav-item"><a href="francais-pricing.html">Tarifications</a></li>
+      <li class="nav-item"><a href="francais-about.html">À propos</a></li>
+      <li class="nav-item"><a href="homepage.html">English</a></li>
+    </ul>
+
+    <!-- Social Icons -->
+    <div class="social-icons">
+      <a href="https://www.facebook.com/proathletebasketball/" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
+      <a href="https://www.instagram.com/proathletebasketball/" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+      <a href="https://www.youtube.com/@proathlete5342" target="_blank"><i class="fab fa-youtube fa-2x"></i></a>
+    </div>
+  </nav>
+</header>
+
+<body>
+
+<section class="video-carousel">
+  <button class="arrow left">&#10094;</button>
+  
+  <div class="carousel-track">
+    <div class="slide"><video src="videos/Warm up.mp4" autoplay muted loop></video></div>
+    <div class="slide"><video src="videos/muscu .mp4" autoplay muted loop></video></div>
+    <div class="slide"><video src="videos/PRE HAB 2.mp4" autoplay muted loop></video></div>
+  </div>
+  
+  <button class="arrow right">&#10095;</button>
+</section>
+
+<script>
+  const track = document.querySelector('.carousel-track');
+  const slides = document.querySelectorAll('.slide');
+  const leftBtn = document.querySelector('.arrow.left');
+  const rightBtn = document.querySelector('.arrow.right');
+
+  let currentIndex = 0;
+
+  function updateCarousel() {
+    const slideWidth = slides[0].clientWidth;
+    track.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
+  }
+
+  leftBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    updateCarousel();
+  });
+
+  rightBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateCarousel();
+  });
+
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateCarousel();
+  }, 15000);
+</script>
+
+<section class="basketball-text-wrapper">
+  <div class="basketball-text">
+    <h2>Programme de prévention des blessures et performance spécifique au basketball</h2>
+    <p>
+      Notre programme de basketball prépare le corps aux exigences physiques du sport. Créé par des experts en médecine sportive avec expérience dans le sport, ce programme d'entraînement, aide à prévenir les blessures fréquentes comme les entorses de 
+      cheville, les déchirures du ligament croisé antérieur (LCA) et les blessures de surentraînement. 
+    </p>
+    <p>Le basketball expose l'athlète à des sauts et mouvements explosifs, des changements de direction rapides et des impacts répétés. Nos programmes intègrent non seulement des exercices pour améliorer la force et les qualités athlétiques, mais également 
+      des exercices neuromusculaires, essentiels pour réduire le risque de blessures.
+    </p>
+
+    <h3>Bénéfices du programme :</h3>
+    <ul class="benefits">
+      <li> Réduction du risque de blessures sans contact</li>
+      <li> Diminution des risques de blessures spécifiques au basketball (entorses du LCA, blessures traumatiques et non-traumatiques aux genoux et cheville, etc.).</li>
+      <li> Meilleure stabilité articulaire et mécanique d'atterrissage</li>
+      <li> Amélioration de l'équilibre, de la mobilité et de la force</li>
+      <li> Programmes de récupération et mobilité</li>
+      <li> Renforcement musculaire selon l'âge et le niveau</li>
+    </ul>
+
+    <h3>Pour qui ?</h3>
+    <ul class="who-for">
+      <li> Jeunes athlètes et joueurs du secondaire</li>
+      <li> Étudiants-athlètes au niveau collégial</li>
+      <li> Joueurs compétitifs et récréatifs</li>
+      <li> Entraîneurs</li>
+    </ul>
+
+    <h2 class="cta">🗣 Performe au maximum de tes capacités, en toute sécurité</h2>
+  </div>
+</section>
+
+  <footer class="main-footer">
+    <div class="foooter-left">
+      <a href="francais-home.html"><img src="logos/White on DarkBlue.png" alt="Logo" class="logo"></a>
+      <p>&copy; PRO ATHLETE 2025. Tous droits réservés.</p>
+    </div>
+    <div class="footer-right">
+      <a href="francais-contactus.html"> Contactez-nous</a>
+      <a href="francais-tersmandcond.html"> Politique de confidentialité et conditions générales</a>
+    </div>
+  </footer>
+
+  <!--Scripts-->
+  <script>
+  fetch('/content/francais-basketball.md')
+    .then(res => res.text())
+    .then(data => {
+      const content = window.frontMatterParser(data);
+
+      // Videos
+      const videoTrack = document.getElementById('video-track');
+      videoTrack.innerHTML = content.videos.map(v => 
+        `<div class="slide"><video src="${v}" autoplay muted loop></video></div>`
+      ).join('');
+
+      // Text
+      document.getElementById('intro-heading').textContent = content.intro;
+      document.getElementById('description').textContent = content.description;
+
+      // Benefits
+      document.getElementById('benefits-list').innerHTML = content.benefits
+        .map(b => `<li>${b}</li>`).join('');
+
+      // Who it’s for
+      document.getElementById('who-for-list').innerHTML = content.who_for
+        .map(p => `<li>${p}</li>`).join('');
+
+      // CTA
+      document.getElementById('cta-text').textContent = content.cta;
+    });
+  </script>
+  <script src="script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <script src="cms-content.js"></script>
+  </body>
+</html>

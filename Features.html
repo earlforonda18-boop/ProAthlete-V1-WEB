@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pro Athlete</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<header class="main-header">
+  <nav class="nav-container">
+    <!-- Logo -->
+    <a href="homepage.html" class="logo-link">
+      <img src="logos/White on DarkBlue.png" alt="Logo" class="logo">
+    </a>
+
+    <!-- Navigation Links -->
+    <ul class="nav-list">
+      <li class="nav-item dropdown">
+        <a href="#" class="dropdown-button">Sports ▾</a>
+        <div class="dropdown-menu">
+          <a href="Basketball.html">Basketball</a>
+          <a href="Soccer.html">Soccer</a>
+        </div>
+      </li>
+      <li class="nav-item"><a href="Features.html">Features</a></li>
+      <li class="nav-item"><a href="Pricing.html">Pricing</a></li>
+      <li class="nav-item"><a href="About.html">About</a></li>
+      <li class="nav-item"><a href="francais-home.html">Français</a></li>
+    </ul>
+
+    <!-- Social Icons -->
+    <div class="social-icons">
+      <a href="https://www.facebook.com/proathletebasketball/" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
+      <a href="https://www.instagram.com/proathletebasketball/" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+      <a href="https://www.youtube.com/@proathlete5342" target="_blank"><i class="fab fa-youtube fa-2x"></i></a>
+    </div>
+  </nav>
+</header>
+
+<section class="features-carousel">
+  <div id="featureCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="images/semir-ahmed-douibi-326433-unsplash.jpg" class="d-block w-100" alt="Feature 1">
+        <div class="carousel-caption d-none d-md-block">
+          <h2 class="slide-text">I am <span class="highlight">PRO ATHLETE</span></h2>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="images/backgroundStretch.jpg" class="d-block w-100" alt="Feature 2">
+        <div class="carousel-caption d-none d-md-block">
+          <h2 class="slide-text">I am <span class="highlight">PRO ATHLETE</span></h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#featureCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#featureCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+</section>
+
+<section class="features-text-wrapper">
+  <div class="features-text">
+    <h2>Features!</h2>
+    <h5>Warm-ups:</h5>
+      <p>Sport-specific warm-up videos tailored to level and theme, including key neuromuscular exercises. We recommend performing a PRO ATHLETE warm-up before every practice or game.</p>
+
+    <h5>Prehab (preventive) Exercise Programs:</h5>
+      <p>Preventive training plans designed to address the most common injuries in the sport. Programs are progressive and adaptable to all experience levels.</p>
+
+    <h5>Strength Training Programs:</h5>
+      <p>A complete 11-month strength training program for athletes, divided into in-season and off-season plans. Includes three difficulty levels. Bodyweight programs available for athletes and coaches.</p>
+
+    <h5>Recovery Routines:</h5>
+      <p>Mobility circuits and targeted stretches to support recovery, reduce soreness, and improve movement quality. </p>
+
+    <h5>Performance Tracking system:</h5>
+      <p>Track progress across training sessions with tools that monitor consistency, workload, and progression. Athletes can view their own progress, 
+        while coaches can access individual and team data to adjust programming as needed. Great for team engagement! </p>
+    
+    <h5>Injury Information: </h5>
+      <p>Log injuries, monitor and track recovery over time. Helps athletes stay accountable during rehabilitation and gives coaches a clear view of the injuries, health professional recommendations and timeline for return to play.</p>
+
+    <h5>Excercise Library: </h5>
+        <p>Hundreds of exercises with professional video demonstrations, coaching cues, and key parameters to follow.</p>
+  </div>
+</section>
+
+  <footer class="main-footer">
+    <div class="foooter-left">
+      <a href="homepage.html"><img src="logos/White on DarkBlue.png" alt="Logo" class="logo"></a>
+      <p>&copy; PRO ATHLETE 2025. All rights reserved.</p>
+    </div>
+    <div class="footer-right">
+      <a href="ContactUs.html"> Contact Us</a>
+      <a href="termsandcond.html"> Privacy Policy and Terms and Conditions</a>
+      <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+      <script src="cms-content.js"></script>
+    </div>
+  </footer>
+
+
+  <!--Scripts-->
+  <script>
+  async function loadFeatures() {
+    const response = await fetch("content/features.md");
+    const text = await response.text();
+
+    // Extract YAML frontmatter
+    const match = /^---\n([\s\S]*?)\n---/.exec(text);
+    if (!match) return;
+    const frontMatter = jsyaml.load(match[1]);
+
+    // Load Carousel
+    const carouselInner = document.querySelector(".carousel-inner");
+    carouselInner.innerHTML = "";
+    frontMatter.carousel.forEach((slide, i) => {
+      const active = i === 0 ? "active" : "";
+      carouselInner.innerHTML += `
+        <div class="carousel-item ${active}">
+          <img src="${slide.image}" class="d-block w-100" alt="Feature ${i + 1}">
+          <div class="carousel-caption d-none d-md-block">
+            <h2 class="slide-text">${slide.caption}</h2>
+          </div>
+        </div>
+      `;
+    });
+
+    // Load Features Text
+    const featuresWrapper = document.querySelector(".features-text");
+    featuresWrapper.innerHTML = `<h2>${frontMatter.title}</h2>`;
+    frontMatter.sections.forEach(sec => {
+      featuresWrapper.innerHTML += `
+        <h5>${sec.heading}</h5>
+        <p>${sec.text}</p>
+      `;
+    });
+  }
+
+  // Load YAML parser
+  document.addEventListener("DOMContentLoaded", () => {
+    const script = document.createElement("script");
+    script.src = "https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js";
+    script.onload = loadFeatures;
+    document.body.appendChild(script);
+  });
+  </script>
+  <script src="script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
