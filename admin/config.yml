@@ -1,0 +1,338 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "homepage"
+    label: "Homepage Content"
+    files:
+      - file: "content/home.md"
+        label: "Home"
+        name: "home"
+        fields:
+          - { label: "Hero Heading", name: "hero_heading", widget: "string" }
+          - { label: "Intro Heading", name: "intro_heading", widget: "string" }
+          - label: "Intro Paragraphs"
+            name: "intro_paragraphs"
+            widget: "list"
+          - label: "Testimonials"
+            name: "testimonials"
+            widget: "list"
+            fields:
+              - { label: "Quote", name: "quote", widget: "text" }
+              - { label: "Author", name: "author", widget: "string" }
+              - { label: "Image", name: "image", widget: "image" }
+              
+  - name: "about"
+    label: "About Page"
+    files:
+      - file: "content/about.md"
+        label: "About"
+        name: "about"
+        fields:
+          - { label: "Mission Heading", name: "mission_heading", widget: "string" }
+          - { label: "Mission Text", name: "mission_text", widget: "text" }
+          - { label: "Team Heading", name: "team_heading", widget: "string" }
+          - label: "Team Members"
+            name: "team"
+            widget: "list"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Bio", name: "bio", widget: "text" }   
+
+backend:
+  - name: git-gateway
+  - branch: main
+
+  - name: "basketball"
+    label: "Basketball Page"
+    files:
+    - file: "content/basketball.md"
+      label: "Basketball Page"
+      name: "basketball"
+      fields:
+        - { label: "Page Title", name: "title", widget: "string" }
+        - { label: "Intro Heading", name: "intro", widget: "string" }
+        - { label: "Description", name: "description", widget: "text" }
+        - label: "Videos"
+          name: "videos"
+          widget: "list"
+          field: { label: "Video File", name: "video", widget: "string" }
+        - label: "Benefits"
+          name: "benefits"
+          widget: "list"
+          field: { label: "Benefit", name: "benefit", widget: "string" }
+        - label: "Who It’s For"
+          name: "who_for"
+          widget: "list"
+          field: { label: "Audience", name: "audience", widget: "string" }
+        - { label: "Call To Action", name: "cta", widget: "string" }
+
+collections:
+  - name: "contact"
+    label: "Contact Page"
+    files:
+      - label: "Contact Content"
+        name: "contact"
+        file: "content/contact.md"
+        fields:
+          - { label: "Page Title", name: "title", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Location", name: "location", widget: "string" }
+          - { label: "Instagram (Main)", name: "instagram1", widget: "string" }
+          - { label: "Instagram (App)", name: "instagram2", widget: "string" }
+
+collections:
+  - name: "features"
+    label: "Features Page"
+    files:
+      - file: "content/features.md"
+        label: "Features Page"
+        name: "features"
+        fields:
+          - { label: "Page Title", name: "title", widget: "string" }
+          - label: "Carousel"
+            name: "carousel"
+            widget: "list"
+            fields:
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Caption", name: "caption", widget: "string" }
+          - label: "Sections"
+            name: "sections"
+            widget: "list"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "pricing"
+    label: "Pricing Page"
+    folder: "content/pages"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - label: "Plans"
+        name: "plans"
+        widget: "list"
+        fields:
+          - { label: "Plan Name", name: "plan_name", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Price", name: "price", widget: "string" }
+          - { label: "Monthly Price", name: "monthly_price", widget: "string" }
+          - label: "Features"
+            name: "features"
+            widget: "list"
+            field:
+              { label: "Feature", name: "feature", widget: "string" }
+          - { label: "CTA Text", name: "cta_text", widget: "string", required: false }
+          - { label: "CTA Link", name: "cta_link", widget: "string", required: false }
+      - label: "Free Trial Section"
+        name: "free_trial"
+        widget: "object"
+        fields:
+          - { label: "Header", name: "header", widget: "string" }
+          - { label: "App Store Link", name: "app_store_link", widget: "string" }
+          - { label: "Google Play Link", name: "google_play_link", widget: "string" }
+          - { label: "Subscribe Button Text", name: "subscribe_text", widget: "string" }
+          - { label: "Subscribe Link", name: "subscribe_link", widget: "string" }
+
+backend:
+  name: git-gateway
+  branch: main  # or "master" depending on your repo
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+      - file: "content/soccer.md"
+        label: "Soccer Page"
+        name: "soccer"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Main Content", name: "body", widget: "markdown" }
+          - { label: "Program Benefits", name: "program_benefits", widget: "list" }
+          - { label: "Who It's For", name: "who_for", widget: "list" }
+          - { label: "Call to Action", name: "cta", widget: "string" }
+
+collections:
+  - name: "francais-about"
+    label: "Page À propos"
+    files:
+      - file: "content/francais-about.md"
+        label: "Francais About Page"
+        name: "francais-about"
+        fields:
+          - { label: "Mission Heading", name: "mission_heading", widget: "string" }
+          - { label: "Mission Text", name: "mission_text", widget: "text" }
+          - { label: "Vision Heading", name: "vision_heading", widget: "string" }
+          - { label: "Vision Text", name: "vision_text", widget: "text" }
+          - label: "Team Members"
+            name: "team"
+            widget: "list"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Bio", name: "bio", widget: "text" }
+              - { label: "Image", name: "image", widget: "image" }
+
+collections:
+  - name: "francais-basketball"
+    label: "Francais Basketball Page"
+    files:
+      - file: "content/francais-basketball.md"
+        label: "Francais Basketball Content"
+        name: "francais-basketball"
+        fields:
+          - label: "Videos"
+            name: "videos"
+            widget: "list"
+          - { label: "Intro Heading", name: "intro", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - label: "Benefits"
+            name: "benefits"
+            widget: "list"
+          - label: "Who It's For"
+            name: "who_for"
+            widget: "list"
+          - { label: "CTA Text", name: "cta", widget: "string" }
+
+collections:
+  - name: "francais-contact"
+    label: "Francais Contact Page"
+    files:
+      - file: "content/francais-contact.md"
+        label: "Francais Contact Content"
+        name: "francais-contact"
+        fields:
+          - { label: "Page Title", name: "title", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - { label: "Email Address", name: "email", widget: "string" }
+          - { label: "Location", name: "location", widget: "string" }
+          - { label: "Instagram 1", name: "instagram1", widget: "string" }
+          - { label: "Instagram 2", name: "instagram2", widget: "string" }
+
+collections:
+  - name: "francais-features"
+    label: "Francais Features Page"
+    files:
+      - file: "content/francais-features.md"
+        label: "Francais Features Content"
+        name: "francais-features"
+        fields:
+          - { label: "Page Title", name: "title", widget: "string" }
+          - label: "Carousel Slides"
+            name: "carousel"
+            widget: "list"
+            fields:
+              - { label: "Image Path", name: "image", widget: "image" }
+              - { label: "Caption", name: "caption", widget: "string" }
+          - label: "Sections"
+            name: "sections"
+            widget: "list"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+
+francais-home:
+  hero_heading: "Performer, en santé"
+  intro_heading: "Des programmes spécialisés, pour optimiser la performance et prévenir les blessures chez les athlètes"
+
+  intro_paragraphs:
+    - "✅ Prévention des blessures :"
+    - "Programmes d'entraînement, d'échauffement et de récupération conçus par des professionnels en médecine sportive, incluant des exercices neuromusculaires ciblés pour prévenir les blessures les plus fréquentes chez les jeunes et les athlètes."
+    - "✅ Programmes d'entraînement spécifique au sport :"
+    - "Des entraînements en préparation physique et prévention conçus spécialement pour les joueurs de basketball et de soccer (avec d'autres sports à venir)."
+    - "✅ Pour les entraîneurs et les athlètes :"
+    - "L'entraîneur prend en charge l'échauffement, la récupération et le suivi de l'activité et du progrès de ses athlètes. L'athlète s'entraîne sur une base régulière avec les programmes d'entraînement et de prévention personnalisés."
+    - "✅ Outil simple et conçu pour une utilisation quotidienne :"
+    - "Accédez à vos programmes personnalisés en tout temps, avec des démonstrations vidéo et un suivi intelligent de votre progression."
+    - "✅ Données de performance :"
+    - "Des tableaux de bord visuels pour permettre aux athlètes de suivre leur progression et aux entraîneurs de suivre et d'analyser l'activité et la progression individuelle et collective au fil du temps."
+    - "✅ Suivi des blessures :"
+    - "**Athlètes :** Entrez les données d'anciennes et nouvelles blessures, avec l'aide d'un(e) professionnel(le) de la santé. Suivez la progression et avec votre consentement, permettez à votre entraîneur de suivre l'état d'une blessure."
+    - "**Entraîneurs :** Suivez l'état des blessures de vos athlètes grâce à des rapports de blessures."
+
+  testimonials:
+    - quote: "Un outil essentiel pour la préparation physique de nos joueuses."
+      author: "Maude Archambault, entraîneure-chef de l'équipe féminine D1 de basketball du Collège Montmorency"
+      image: "images/Maude-Archambault.jpg"
+    - quote: "Pour nos entraîneurs qui travaillent avec des jeunes athlètes, l'application PRO ATHLETE leur permet d'exécuter divers exercices et échauffements adaptés à leur âge et spécifiques au basketball. Pour nos athlètes de division 1, chacun a un abonnement directement sur son téléphone pour ses séances d'entraînement. Chaque exercice est clairement décrit et les vidéos aident à l'exécution correcte des mouvements."
+      author: "Isabelle Chiasson, directrice du programme de basketball au lycée St-Laurent et entraîneuse chef de l'équipe masculine senior de division 1"
+      image: "images/isabelle-chiasson-large.jpg"
+
+francais-pricing:
+  plans:
+    - plan_name: "Coach Plan"
+      description: "Le coach utilise PRO ATHLETE pour structurer les échauffements, intégrant des exercices validés par la recherche à chaque pratique et match."
+      price: "$129.88"
+      monthly_price: "$10.82"
+      features:
+        - "50+ échauffements"
+        - "30+ programmes de prévention et de force"
+        - "Planificateur de pratique"
+      cta_text: "Recommandation : 1 abonnement par coach, par équipe"
+      cta_link: "#"
+
+    - plan_name: "Athlete Plan"
+      description: "L'athlète utilise l'application pour améliorer sa force, sa puissance et prévenir les blessures."
+      price: "$129.88"
+      monthly_price: "$10.82"
+      features:
+        - "11 mois de programme (7 mois en saison, 4 hors saison)"
+        - "Programmes sans matériel disponibles"
+        - "Programmes de mobilité et récupération"
+        - "Échauffements variés"
+
+    - plan_name: "Group subscriptions"
+      description: ""
+      price: "$79.88"
+      monthly_price: "$6.65"
+      features:
+        - "1 abonnement par coach, pour chaque équipe de votre programme."
+        - "1 abonnement par athlète nécessitant un programme de force et de prévention."
+        - "Pour les athlètes âgés de 10 ans et plus"
+      cta_text: "Contactez-nous pour une soumission"
+      cta_link: "francais-contactus.html"
+
+  free_trial:
+    header: "Essayez l'application PRO ATHLETE gratuitement pendant 14 jours"
+    app_store_link: "https://apps.apple.com/"
+    google_play_link: "https://play.google.com/store"
+    subscribe_text: "ABONNEZ-VOUS MAINTENANT"
+    subscribe_link: "#"
+
+francais-soccer:
+  title: "Programme de prévention de blessures spécifique au soccer"
+  body: "Notre programme d'entraînement spécifique au soccer est conçu pour affronter les défis physiques du sport. Mis au point par des spécialistes en médecine sportive et experts du soccer, il intègre des exercices neuromusculaires pour limiter les blessures les plus fréquentes : entorses, claquages, déchirures du ligament croisé antérieur (LCA), etc."
+  program_benefits:
+    - "Prévention des blessures sans contact"
+    - "Réduction des blessures typiques au soccer : entorses du LCA, lésions au ménisque, entorses de chevilles, claquages, etc."
+    - "Renforcement des articulations"
+    - "Gain en mobilité, force et stabilité"
+    - "Séances de mobilité pour soutenir la récupération"
+    - "Entraînement adapté selon l'âge et le niveau"
+  who_for:
+    - "Athlètes de niveau secondaire ou collégial"
+    - "Joueurs récréatifs et compétitifs"
+    - "Entraîneurs"
+  cta: "🗣 Entraîne-toi pour le jeu. Reste dans le jeu."
+
+
